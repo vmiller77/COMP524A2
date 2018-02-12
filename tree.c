@@ -26,6 +26,8 @@ int main() {
     scanf("%s", &input);
     //printf("%s",input);
 
+
+    //Check to see what the string it
     if(strcmp(input,"quit")==0){//if quit then quit program
       exit(0);
     }else if(strstr("father",input)!= NULL){//if father then addFather
@@ -60,7 +62,6 @@ int main() {
       printf("Sorry, you put an invalid command!\n");
     }
   }
-
 }
 
 //methods
