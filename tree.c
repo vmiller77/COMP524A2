@@ -44,8 +44,7 @@ int main() {
   char *parent;
   parent=strtok(addInput,"(");
 
-  //FATHER - this doesnt work right now, I can get the dads name but not the childs
-  // update - need to remove the last ) in child
+  //FATHER 
   if(strcmp(parent,"father")==0){
     char *father;
     char *child;
@@ -56,20 +55,20 @@ int main() {
     printf("Father: %s\n",father);
     printf("Child: %s\n",child);
 
-    //addNode(child, parent, 1);
+    addNode(child, parent, 1);
 
   //MOTHER
 }else if(strcmp(parent,"mother")==0){
   char *mother;
   char *child;
 
-  mother=strtok(NULL,"");
-  child=strtok(NULL,"");
+  mother=strtok(NULL,",");
+  child=strtok(NULL,")");
 
   printf("Mother: %s\n",mother);
   printf("Child: %s\n",child);
 
-  //addNode(child, parent, 0);
+  addNode(child, parent, 0);
 
   //NEITHER
   }else{
@@ -101,7 +100,17 @@ void printTree(){
 void addNode(char* child, char* parent, int father){
   //check if it can be placed there
   //if yes then place there
+	if(!exists(parent)){
+		if (father==1){
+		printf("Added father\n");
+		}else if (father == 0 && !exists(parent)){
+		printf("Added mother\n");
+		}
+	}
   //if not return an error message
+	else{
+		printf("Sorry the parent wasn't able to be added\n");
+	}
 }
 
 //deleteNode
