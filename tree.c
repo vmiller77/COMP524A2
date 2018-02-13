@@ -45,11 +45,12 @@ int main() {
   parent=strtok(addInput,"(");
 
   //FATHER - this doesnt work right now, I can get the dads name but not the childs
+  // update - need to remove the last ) in child
   if(strcmp(parent,"father")==0){
     char *father;
     char *child;
 
-    father=strtok(NULL,"");
+    father=strtok(NULL,",");
     child=strtok(NULL,"");
 
     printf("Father: %s\n",father);
