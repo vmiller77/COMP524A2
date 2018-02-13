@@ -51,7 +51,7 @@ int main() {
     char *child;
 
     father=strtok(NULL,",");
-    child=strtok(NULL,"");
+    child=strtok(NULL,")");
 
     printf("Father: %s\n",father);
     printf("Child: %s\n",child);
