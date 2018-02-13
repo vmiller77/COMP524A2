@@ -12,9 +12,9 @@ int main() {
   char *family[7]; //strs[i] = malloc(strlen("foo") + 1);
 
   char name[12];
-  printf("What is your name? ");
+  printf("What is your name?\n");
   scanf("%s",&name);
-  printf("%s\n",name);
+  //printf("%s\n",name);
 
   //store name into root
   makeRoot(name,family);
@@ -22,43 +22,68 @@ int main() {
 
   //start running program until quits
   while(1){
+    printf("Please specify whether to add or delete an entry, or print the tree\n");
     char input[33];
     scanf("%s", &input);
-    //printf("%s",input);
-
 
     //Check to see what the string it
-    if(strcmp(input,"quit")==0){//if quit then quit program
+    //QUIT
+    if(strcmp(input,"quit")==0){
       exit(0);
-    }else if(strstr("father",input)!= NULL){//if father then addFather
-      //extract name from string
 
-      //extract father name from string
-
-      //char child[12];
-      //char parent[12];
-      //addNode(child, parent, 1);
-      printf("father");
-
-    }else if(strstr("mother",input)!= NULL){//if mother then addMother
-      //extract name from string
-
-      //extract father name from string
-
-      //char child[12];
-      //char parent[12];
-      //addNode(child, parent, 0);
-      printf("mother");
-
-    }else if(strcmp(input,"print")==0){//if print then print tree
+    //PRINT
+    }else if(strcmp(input,"print")==0){
       printTree();
 
-    }else if(strstr("delete",input)!= NULL){//if delete then delete node
-      //extract name from string
-      //char delName[12];
-      //deleteNode(delName);
-      printf("delete");
-    }else{//if neither return an error message
+//ADD
+}else if(strcmp(input,"add")==0){
+  printf("Please specify a relation to add\n");
+  char addInput[34];
+  scanf("%s", &addInput);
+
+  char *parent;
+  parent=strtok(addInput,"(");
+
+  //FATHER - this doesnt work right now, I can get the dads name but not the childs
+  if(strcmp(parent,"father")==0){
+    char *father;
+    char *child;
+
+    father=strtok(NULL,"");
+    child=strtok(NULL,"");
+
+    printf("Father: %s\n",father);
+    printf("Child: %s\n",child);
+
+    //addNode(child, parent, 1);
+
+  //MOTHER
+}else if(strcmp(parent,"mother")==0){
+  char *mother;
+  char *child;
+
+  mother=strtok(NULL,"");
+  child=strtok(NULL,"");
+
+  printf("Mother: %s\n",mother);
+  printf("Child: %s\n",child);
+
+  //addNode(child, parent, 0);
+
+  //NEITHER
+  }else{
+    printf("Sorry, you put an invalid command!\n");
+  }
+  //DELETE
+  }else if(strcmp(strtok(input,"("),"delete")==0){
+    printf("Please specify the name to delete\n");
+    char deleteName[13];
+    scanf("%s", &deleteName);
+    printf("Delete name: %s\n", deleteName);
+    deleteNode(deleteName);
+
+    //INVALID COMMAND
+    }else{
       printf("Sorry, you put an invalid command!\n");
     }
   }
@@ -80,8 +105,14 @@ void addNode(char* child, char* parent, int father){
 
 //deleteNode
 void deleteNode(char* name){
-  //check to see if it can be deleted
-  //if yes the delete it and free memory and remove pointer
-  //if not then error message
-  printf("TODO");
+  if(exists(name)==1){
+    //delete it and free memory?
+  }else{
+    printf("Sorry that person is not in the family tree.\n");
+  }
+}
+
+int exists(char* name){
+  //check to see if the name exists
+  return 0;//return 0/false if does not exist
 }
