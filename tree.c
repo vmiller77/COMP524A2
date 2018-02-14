@@ -4,21 +4,15 @@
 
 void makeUser(char *name, char *family[]);
 void printTree();
-<<<<<<< HEAD
-void addNode(char* child, char* parent, int father, char *family[]);
-void deleteNode(char* name, char *family[]);
-int exists(char* name, char *family[]);
-void printAll(char *family[]);
-=======
 void addNode(char *child, char *parent, int father, char *family[]);
 void deleteNode(char *name, char *family[]);
 int exists(char *name, char *family[]);
->>>>>>> 794a125c53581ee765126a3cc433e3f64d6abfc2
 
 int main()
 {
   //make array to hold strings for family so has 7 spots
-  char *family[8] = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}; //root,user,mom,dad,moms mom,moms dad,dads mom,dads dad
+  char *family[8] = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}; 
+  //root,user,mom,dad,moms mom,moms dad,dads mom,dads dad
 
   char name[12];
   printf("What is your name?\n");
@@ -46,16 +40,10 @@ int main()
     {
       printTree(family);
 
-<<<<<<< HEAD
-    //ADD
-    }else if(strcmp(input,"add")==0){
-      printAll(family);
-=======
       //ADD
     }
     else if (strcmp(input, "add") == 0)
     {
->>>>>>> 794a125c53581ee765126a3cc433e3f64d6abfc2
       printf("Please specify a relation to add\n");
       char addInput[34];
       scanf("%s", &addInput);
@@ -72,15 +60,8 @@ int main()
         father = strtok(NULL, ",");
         child = strtok(NULL, ")");
 
-<<<<<<< HEAD
-        printf("Father: %s\n",father);
-        printf("Child: %s\n",child);
-        printf("Right after token");
-        printAll(family);
-=======
         printf("Father: %s\n", father);
         printf("Child: %s\n", child);
->>>>>>> 794a125c53581ee765126a3cc433e3f64d6abfc2
 
         addNode(child, father, 1, family);
 
@@ -94,18 +75,10 @@ int main()
         mother = strtok(NULL, ",");
         child = strtok(NULL, ")");
 
-<<<<<<< HEAD
-        printf("Mother: %s\n",mother);
-        printf("Child: %s\n",child);
-        printf("Right after token");
-        printAll(family);
-        addNode(child, mother, 0, family);
-=======
         printf("Mother: %s\n", mother);
         printf("Child: %s\n", child);
 
-        addNode(child, parent, 0, family);
->>>>>>> 794a125c53581ee765126a3cc433e3f64d6abfc2
+        addNode(child, mother, 0, family);
 
         //NEITHER
       }
@@ -160,52 +133,17 @@ void printTree(char *family[])
 }
 
 //addNode father=1 if father, 0 if mother
-<<<<<<< HEAD
-void addNode(char* child, char* parent, int father, char *family[]){
-    printf("Mom or dad?: %d",father);
-
-  printf("Adding a parent!!!\n");
-   //check if child exists
-   if(exists(child, family)!=0){
-       printAll(family);
-=======
 void addNode(char *child, char *parent, int father, char *family[])
 {
-
-  printf("Adding a parent!!!\n"); //NEED TO FIX THE ISH BELOW
+  
   //check if child exists
   if (exists(child, family) != 0)
   {
->>>>>>> 794a125c53581ee765126a3cc433e3f64d6abfc2
     //if parent doesnt exist then check what type of parent
     if (exists(parent, family) == 0)
     {
       int childIndex = exists(child, family);
       //if its father
-<<<<<<< HEAD
-  		if (father==1){
-            int fatherIndex=childIndex*2+1;
-            if(family[fatherIndex]==NULL){
-              //can add
-              printf("This father can be added\n");
-              family[fatherIndex]=parent;
-            }else{
-              printf("Sorry a father already exists for that child\n");
-            }
-
-        //if its mother
-  		}else if (father == 0){
-            int motherIndex=childIndex*2;
-            if(family[motherIndex]==NULL){
-              //can add
-              printf("This mother can be added\n");
-              family[motherIndex]=parent;
-            }else{
-              printf("Sorry a mother already exists for that child\n");
-            }
-  		}
-  	}else{
-=======
       if (father == 1)
       {
         int fatherIndex = childIndex * 2 + 1;
@@ -239,7 +177,6 @@ void addNode(char *child, char *parent, int father, char *family[])
     }
     else
     {
->>>>>>> 794a125c53581ee765126a3cc433e3f64d6abfc2
       printf("Sorry that parent already exists in the tree.");
     }
   }
@@ -265,17 +202,6 @@ void deleteNode(char *name, char *family[])
 int exists(char *name, char *family[])
 {
   int index = 1;
-<<<<<<< HEAD
-  //iterates through array family
-  for (index; index<8; index++) {
-    // printf("Index: %d, exists here %s\n",index, family[index]);
-            //if it matches the name wanted
-        if(family[index]!=NULL){
-           if(strcmp(name,family[index])==0){
-                return index;
-            }
-        }
-=======
   //check to see if the name exists
   //if exists return the index at which it exists
   for (index; index < 8; index++)
@@ -293,14 +219,6 @@ int exists(char *name, char *family[])
     {
       printf("Does not exist here!\n");
     }
->>>>>>> 794a125c53581ee765126a3cc433e3f64d6abfc2
   }
   return 0; //return 0/false if does not exist
-}
-
-void printAll(char *family[]){
-  int index = 0;
-  for (index; index<8; index++) {
-      printf("%s\n",family[index]);
-  }
 }
