@@ -107,38 +107,39 @@ void addNode(char* child, char* parent, int father, char *family[]){
 
   printf("Adding a parent!!!"); //NEED TO FIX THE ISH BELOW
   // //check if child exists
-  // if(exists(child, family)){
-  //   //if parent doesnt exist then check what type of parent
-  //   if(!exists(parent, family)){
-  //     int childIndex=exists(child, family);
-  //     //if its father
-  // 		if (father==1){
-  //       int fatherIndex=childIndex*2+1;
-  //       if(family[fatherIndex]==NULL){
-  //         //can add
-  //         printf("This father can be added\n");
-  //         family[fatherIndex]=parent;
-  //       }else{
-  //         printf("Sorry a father already exists for that child\n");
-  //       }
-  //
-  //     //if its mother
-  // 		}else if (father == 0){
-  //       int motherIndex=childIndex*2;
-  //       if(family[motherIndex]==NULL){
-  //         //can add
-  //         printf("This mother can be added\n");
-  //         family[motherIndex]=parent;
-  //       }else{
-  //         printf("Sorry a mother already exists for that child\n");
-  //       }
-  // 		}
-  // 	}else{
-  //     printf("Sorry that parent already exists in the tree.");
-  //   }
-  // }else{
-	// 	printf("Sorry that child does not exist.\n");
-	// }
+   if(exists(child, family)){
+     printf("adding");
+    //if parent doesnt exist then check what type of parent
+    if(!exists(parent, family)){
+      int childIndex=exists(child, family);
+      //if its father
+  		if (father==1){
+        int fatherIndex=childIndex*2+1;
+        if(family[fatherIndex]==NULL){
+          //can add
+          printf("This father can be added\n");
+          //family[fatherIndex]=parent;
+        }else{
+          printf("Sorry a father already exists for that child\n");
+        }
+
+      //if its mother
+  		}else if (father == 0){
+        int motherIndex=childIndex*2;
+        if(family[motherIndex]==NULL){
+          //can add
+          printf("This mother can be added\n");
+          //family[motherIndex]=parent;
+        }else{
+          printf("Sorry a mother already exists for that child\n");
+        }
+  		}
+  	}else{
+      printf("Sorry that parent already exists in the tree.");
+    }
+  }else{
+		printf("Sorry that child does not exist.\n");
+	}
 }
 
 //deleteNode
