@@ -32,7 +32,7 @@ int main() {
 
     //PRINT
     }else if(strcmp(input,"print")==0){
-      printTree();
+      printTree(family);
 
     //ADD
     }else if(strcmp(input,"add")==0){
@@ -95,8 +95,18 @@ void makeUser(char* name, char *family[]){
   family[1]=name;
 }
 
-void printTree(){
+void printTree(char *family[]){
   printf("TODO");
+  for (int index=1; index < 4; index++) {
+    if (index == 1){
+      printf("User %s\n", family[index]);
+    } else if (index == 2){
+      printf("Parent %s\n", family[index]);
+    } else if (index == 2 || index == 3){
+      printf("Parent %s\n", family[index]);
+    }
+  }
+
 }
 
 //addNode father=1 if father, 0 if mother
