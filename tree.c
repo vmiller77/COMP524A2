@@ -10,7 +10,7 @@ int exists(char* name, char *family[]);
 
 int main() {
   //make array to hold strings for family so has 7 spots
-  char *family[8]; //root,user,mom,dad,moms mom,moms dad,dads mom,dads dad
+  char family[8][12]; //root,user,mom,dad,moms mom,moms dad,dads mom,dads dad
 
   char name[12];
   printf("What is your name?\n");
@@ -23,7 +23,7 @@ int main() {
   //start running program until quits
   while(1){
     printf("Please specify whether to add or delete an entry, or print the tree\n");
-    char input[33];
+    char input[7];
     scanf("%s", &input);
 
     //Check to see what the string it
@@ -102,41 +102,39 @@ void printTree(){
 
 //addNode father=1 if father, 0 if mother
 void addNode(char* child, char* parent, int father, char *family[]){
-  //check if it can be placed there
-  //if yes then place there
 
   printf("Adding a parent!!!"); //NEED TO FIX THE ISH BELOW
   // //check if child exists
-   if(exists(child, family)){
+   if(exists(child, family)!=0){
      printf("adding");
-    //if parent doesnt exist then check what type of parent
-    if(!exists(parent, family)){
-      int childIndex=exists(child, family);
-      //if its father
-  		if (father==1){
-        int fatherIndex=childIndex*2+1;
-        if(family[fatherIndex]==NULL){
-          //can add
-          printf("This father can be added\n");
-          //family[fatherIndex]=parent;
-        }else{
-          printf("Sorry a father already exists for that child\n");
-        }
-
-      //if its mother
-  		}else if (father == 0){
-        int motherIndex=childIndex*2;
-        if(family[motherIndex]==NULL){
-          //can add
-          printf("This mother can be added\n");
-          //family[motherIndex]=parent;
-        }else{
-          printf("Sorry a mother already exists for that child\n");
-        }
-  		}
-  	}else{
-      printf("Sorry that parent already exists in the tree.");
-    }
+    // //if parent doesnt exist then check what type of parent
+    // if(exists(parent, family)==0){
+    //   int childIndex=exists(child, family);
+    //   //if its father
+  	// 	if (father==1){
+    //     int fatherIndex=childIndex*2+1;
+    //     if(family[fatherIndex]==NULL){
+    //       //can add
+    //       printf("This father can be added\n");
+    //       //family[fatherIndex]=parent;
+    //     }else{
+    //       printf("Sorry a father already exists for that child\n");
+    //     }
+    //
+    //   //if its mother
+  	// 	}else if (father == 0){
+    //     int motherIndex=childIndex*2;
+    //     if(family[motherIndex]==NULL){
+    //       //can add
+    //       printf("This mother can be added\n");
+    //       //family[motherIndex]=parent;
+    //     }else{
+    //       printf("Sorry a mother already exists for that child\n");
+    //     }
+  	// 	}
+  	// }else{
+    //   printf("Sorry that parent already exists in the tree.");
+    // }
   }else{
 		printf("Sorry that child does not exist.\n");
 	}
@@ -144,7 +142,7 @@ void addNode(char* child, char* parent, int father, char *family[]){
 
 //deleteNode
 void deleteNode(char* name, char *family[]){
-  if(exists(name, family)==1){
+  if(exists(name, family)!=0){
     //delete it and free memory?
   }else{
     printf("Sorry that person is not in the family tree.\n");
@@ -155,10 +153,16 @@ int exists(char* name, char *family[]){
   int index = 1;
   //check to see if the name exists
   //if exists return the index at which it exists
-  for (index; index<9; ++index) {
-    if(strcmp(name,family[index])==0){
-      return index;
-    }
+  for (index; index<9; index++) {
+    printf("Index: %d\n",index);
+     if(family[index]!=NULL){
+         printf("Not Null at Index: %d\n",index);
+         printf("exists here %s\n",family[index]);
+    //  printf("family index: %s",family[index]);
+  //         if(strcmp(name,family[index])==0){
+  //              return index;
+  //          }
+     }
   }
-  return index;//return 0/false if does not exist
+ return 0;//return 0/false if does not exist
 }
