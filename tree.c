@@ -8,6 +8,7 @@ void addNode(char* child, char* parent, int father, char *family[]);
 void deleteNode(char* name, char *family[]);
 int exists(char* name, char *family[]);
 void printAll(char *family[]);
+char* sub(int start, int end, char* str);
 
 int main() {
   //make array to hold strings for family so has 7 spots
@@ -42,38 +43,29 @@ int main() {
       char addInput[34];
       scanf("%s", &addInput);
 
-      char *parent;
-      parent=strtok(addInput,"(");
+
+
+        char *dest = strstr(addInput, ",");
+        int pos;
+        pos = dest - addInput;
+
+      char *parent=sub(0,6,addInput);//=strtok(addInput,"(");
+      char *parentName=sub(7,pos,addInput);//=strtok(NULL,",");
+      char *childName=sub(pos+1,strlen(addInput)-1,addInput);//=strtok(NULL,")");
+      printf("LOOK: %s\n",sub(7,strlen(addInput)-1,addInput));
+
+      printf("Parent Name: %s\n",parentName);
+      printf("Child: %s\n",childName);
 
       //FATHER
-      if(strcmp(parent,"father")==0){
-        char *father;
-        char *child;
+      if((strcmp(parent,"father")==0)&&(parentName!=NULL)&&(childName!=NULL)){
 
-        father=strtok(NULL,",");
-        child=strtok(NULL,")");
-
-        printf("Father: %s\n",father);
-        printf("Child: %s\n",child);
-        printf("Right after token");
-        printAll(family);
-
-        addNode(child, father, 1, family);
+        addNode(childName,parentName,1,family);
 
         //MOTHER
-      }else if(strcmp(parent,"mother")==0){
-        char *mother;
-        char *child;
+      }else if((strcmp(parent,"mother")==0)&&(parentName!=NULL)&&(childName!=NULL)){
 
-        mother=strtok(NULL,",");
-        child=strtok(NULL,")");
-
-        printf("Mother: %s\n",mother);
-        printf("Child: %s\n",child);
-        printf("Right after token");
-        printAll(family);
-        addNode(child, mother, 0, family);
-
+        addNode(childName,parentName,0,family);
         //NEITHER
       }else{
         printf("Sorry, you put an invalid command!\n");
@@ -106,12 +98,10 @@ void printTree(){
 
 //addNode father=1 if father, 0 if mother
 void addNode(char* child, char* parent, int father, char *family[]){
-    printf("Mom or dad?: %d",father);
 
   printf("Adding a parent!!!\n");
    //check if child exists
    if(exists(child, family)!=0){
-       printAll(family);
     //if parent doesnt exist then check what type of parent
     if(exists(parent, family)==0){
       int childIndex=exists(child, family);
@@ -121,7 +111,9 @@ void addNode(char* child, char* parent, int father, char *family[]){
             if(family[fatherIndex]==NULL){
               //can add
               printf("This father can be added\n");
-              family[fatherIndex]=parent;
+              char backup[13];
+              strcpy(backup,parent);
+              family[fatherIndex]=backup;
             }else{
               printf("Sorry a father already exists for that child\n");
             }
@@ -132,7 +124,9 @@ void addNode(char* child, char* parent, int father, char *family[]){
             if(family[motherIndex]==NULL){
               //can add
               printf("This mother can be added\n");
-              family[motherIndex]=parent;
+              char backup[13];
+              strcpy(backup,parent);
+              family[motherIndex]=backup;
             }else{
               printf("Sorry a mother already exists for that child\n");
             }
@@ -174,4 +168,13 @@ void printAll(char *family[]){
   for (index; index<8; index++) {
       printf("%s\n",family[index]);
   }
+}
+
+char* sub(int start, int end, char* str){
+  char *starting = &str[start];
+  char *ending = &str[end];
+  // Note the + 1 here, to have a null terminated substring
+  char *substr = (char *)calloc(1, ending - starting + 1);
+  memcpy(substr, starting, ending - starting);
+  return substr;
 }
