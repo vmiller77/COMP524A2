@@ -35,15 +35,18 @@ int main() {
 
     //PRINT
     }else if(strcmp(input,"print")==0){
-      printTree();
+      printTree(family);
 
     //ADD
     }else if(strcmp(input,"add")==0){
-      printAll(family);
       printf("Please specify a relation to add\n");
       char addInput[34];
       scanf("%s", &addInput);
+      char *dest = strstr(addInput, ",");
+      int pos;
+      pos = dest - addInput;
 
+<<<<<<< Updated upstream
     //   char *dest = strstr(addInput, ",");
     //   int pos;
     //   pos = dest - addInput;
@@ -55,6 +58,12 @@ int main() {
       char *parent=strtok(addInput,"(");
       char *parentName=strtok(NULL,",");
       char *childName=strtok(NULL,")");
+=======
+      char *parent=sub(0,6,addInput);//=strtok(addInput,"("); should be father ot mother
+      char *parentName=sub(7,pos,addInput);//=strtok(NULL,","); 
+      char *childName=sub(pos+1,strlen(addInput)-1,addInput);//=strtok(NULL,")");
+      printf("LOOK: %s\n",sub(7,strlen(addInput)-1,addInput));
+>>>>>>> Stashed changes
 
       printf("Parent Name: %s\n",parentName);
       printf("Child: %s\n",childName);
@@ -95,13 +104,21 @@ void makeUser(char* name, char *family[]){
   family[1]=name;
 }
 
-void printTree(){
-  printf("TODO");
+void printTree(char *family[]){
+  int index = 1;
+  for (index; index<8; index++) {
+    if (index == 1 && family[index]!=NULL){
+      printf("%s\n",family[index]);
+      if(family[index+1]!=NULL){
+        
+      }
+    }
+    
+  }
 }
 
 //addNode father=1 if father, 0 if mother
 void addNode(char* child, char* parent, int father, char *family[]){
-
   printf("Adding a parent!!!\n");
    //check if child exists
    if(exists(child, family)!=0){
@@ -114,6 +131,7 @@ void addNode(char* child, char* parent, int father, char *family[]){
             if(family[fatherIndex]==NULL){
               //can add
               printf("This father can be added\n");
+              printAll(family);
               char backup[13];
               strcpy(backup,parent);
               family[fatherIndex]=backup;
@@ -127,6 +145,7 @@ void addNode(char* child, char* parent, int father, char *family[]){
             if(family[motherIndex]==NULL){
               //can add
               printf("This mother can be added\n");
+              printAll(family);
               char backup[13];
               strcpy(backup,parent);
               family[motherIndex]=backup;
@@ -167,6 +186,7 @@ int exists(char* name, char *family[]){
 }
 
 void printAll(char *family[]){
+  printf("NEW UPDATED FAMILY");
   int index = 0;
   for (index; index<8; index++) {
       if(family[index]==NULL){
