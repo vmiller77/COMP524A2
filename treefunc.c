@@ -7,41 +7,44 @@ void makeUser(char* name, char *family[]){
   family[1]=name;
 }
 
-void printTree(char *family[]){
-  printf("\n");
-  int i=1;
-  printf("%s\n",family[1]);
-  if(family[3]!=NULL){
-    if(family[7]!=NULL){
-      if(family[6]!=NULL){
-        printf("    %s\n      %s\n       %s\n",family[3],family[7],family[6]);
-      }else{
-        printf("    %s\n      %s\n",family[3],family[7]);
+void printTree(char *family[])
+{
+  int index = 1;
+  char *name = family[index];
+  char *indexMom = family[index * 2];
+  char *indexDad = family[index * 2 + 1];
+  char *indexMomMom = family[(index * 2) * 2];
+  char *indexMomDad = family[(index * 2) * 2 + 1];
+  char *indexDadMom = family[(index * 2 + 1) * 2];
+  char *indexDadDad = family[(index * 2 + 1) * 2 + 1];
+  if (family[index] != NULL)
+  {
+    printf("%s\n", name);
+    if (family[index * 2] != NULL)
+    {
+      printf("\t%s\n", indexMom);
+      if (family[(index * 2) * 2] != NULL)
+      {
+        printf("\t\t%s\n", indexMomMom);
       }
-    }else{
-      if(family[6]!=NULL){
-        printf("    %s\n      %s\n",family[3],family[6]);
-      }else{
-        printf("    %s\n",family[3]);
+      if (family[(index * 2) * 2 + 1] != NULL)
+      {
+        printf("\t\t%s\n", indexMomDad);
+      }
+    }
+    if (family[index * 2 + 1] != NULL)
+    {
+      printf("\t%s\n", indexDad);
+      if (family[(index * 2 + 1) * 2] != NULL)
+      {
+        printf("\t\t%s\n", indexDadMom);
+      }
+      if (family[(index * 2 + 1) * 2 + 1] != NULL)
+      {
+        printf("\t\t%s\n", indexDadDad);
       }
     }
   }
-  if(family[2]!=NULL){
-    if(family[5]!=NULL){
-      if(family[4]!=NULL){
-        printf("    %s\n      %s\n       %s\n",family[2],family[5],family[4]);
-      }else{
-        printf("    %s\n      %s\n",family[2],family[5]);
-      }
-    }else{
-      if(family[6]!=NULL){
-        printf("    %s\n      %s\n",family[2],family[4]);
-      }else{
-        printf("    %s\n",family[2]);
-      }
-    }
-  }
-
 }
 
 //addNode father=1 if father, 0 if mother
