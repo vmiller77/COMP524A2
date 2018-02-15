@@ -7,8 +7,41 @@ void makeUser(char* name, char *family[]){
   family[1]=name;
 }
 
-void printTree(){
-  printf("TODO\n");
+void printTree(char *family[]){
+  printf("\n");
+  int i=1;
+  printf("%s\n",family[1]);
+  if(family[3]!=NULL){
+    if(family[7]!=NULL){
+      if(family[6]!=NULL){
+        printf("    %s\n      %s\n       %s\n",family[3],family[7],family[6]);
+      }else{
+        printf("    %s\n      %s\n",family[3],family[7]);
+      }
+    }else{
+      if(family[6]!=NULL){
+        printf("    %s\n      %s\n",family[3],family[6]);
+      }else{
+        printf("    %s\n",family[3]);
+      }
+    }
+  }
+  if(family[2]!=NULL){
+    if(family[5]!=NULL){
+      if(family[4]!=NULL){
+        printf("    %s\n      %s\n       %s\n",family[2],family[5],family[4]);
+      }else{
+        printf("    %s\n      %s\n",family[2],family[5]);
+      }
+    }else{
+      if(family[6]!=NULL){
+        printf("    %s\n      %s\n",family[2],family[4]);
+      }else{
+        printf("    %s\n",family[2]);
+      }
+    }
+  }
+
 }
 
 //addNode father=1 if father, 0 if mother
