@@ -9,6 +9,7 @@ void deleteNode(char* name, char *family[]);
 int exists(char* name, char *family[]);
 void printAll(char *family[]);
 char* sub(int start, int end, char* str);
+// char* copy(char* src);
 
 int main() {
   //make array to hold strings for family so has 7 spots
@@ -43,16 +44,17 @@ int main() {
       char addInput[34];
       scanf("%s", &addInput);
 
+    //   char *dest = strstr(addInput, ",");
+    //   int pos;
+    //   pos = dest - addInput;
 
+    //   char *parent=sub(0,6,addInput);
+    //   char *parentName=sub(7,pos,addInput);
+    //   char *childName=sub(pos+1,strlen(addInput)-1,addInput);
 
-        char *dest = strstr(addInput, ",");
-        int pos;
-        pos = dest - addInput;
-
-      char *parent=sub(0,6,addInput);//=strtok(addInput,"(");
-      char *parentName=sub(7,pos,addInput);//=strtok(NULL,",");
-      char *childName=sub(pos+1,strlen(addInput)-1,addInput);//=strtok(NULL,")");
-      printf("LOOK: %s\n",sub(7,strlen(addInput)-1,addInput));
+      char *parent=strtok(addInput,"(");
+      char *parentName=strtok(NULL,",");
+      char *childName=strtok(NULL,")");
 
       printf("Parent Name: %s\n",parentName);
       printf("Child: %s\n",childName);
@@ -62,11 +64,12 @@ int main() {
 
         addNode(childName,parentName,1,family);
 
-        //MOTHER
+      //MOTHER
       }else if((strcmp(parent,"mother")==0)&&(parentName!=NULL)&&(childName!=NULL)){
 
         addNode(childName,parentName,0,family);
-        //NEITHER
+
+      //NEITHER
       }else{
         printf("Sorry, you put an invalid command!\n");
       }
@@ -166,8 +169,11 @@ int exists(char* name, char *family[]){
 void printAll(char *family[]){
   int index = 0;
   for (index; index<8; index++) {
+      if(family[index]==NULL){
+          printf("null\n");
+      }else{
       printf("%s\n",family[index]);
-  }
+  }}
 }
 
 char* sub(int start, int end, char* str){
@@ -178,3 +184,11 @@ char* sub(int start, int end, char* str){
   memcpy(substr, starting, ending - starting);
   return substr;
 }
+
+// char* copy(char* src){
+//     int index=0;
+//     char *dest;
+//     for(index=0;index<strlen(src);index++){
+//         dest[index]=src[index];
+//     }
+// }
