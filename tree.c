@@ -33,35 +33,17 @@ int main() {
 
     //PRINT
     }else if(strcmp(input,"print")==0){
-      printTree(family);
-
+      //printTree();
+      printAll(family);
     //ADD
     }else if(strcmp(input,"add")==0){
       printf("Please specify a relation to add\n");
       char addInput[34];
       scanf("%s", &addInput);
-      char *dest = strstr(addInput, ",");
-      int pos;
-      pos = dest - addInput;
-
-<<<<<<< Updated upstream
-    //   char *dest = strstr(addInput, ",");
-    //   int pos;
-    //   pos = dest - addInput;
-
-    //   char *parent=sub(0,6,addInput);
-    //   char *parentName=sub(7,pos,addInput);
-    //   char *childName=sub(pos+1,strlen(addInput)-1,addInput);
 
       char *parent=strtok(addInput,"(");
       char *parentName=strtok(NULL,",");
       char *childName=strtok(NULL,")");
-=======
-      char *parent=sub(0,6,addInput);//=strtok(addInput,"("); should be father ot mother
-      char *parentName=sub(7,pos,addInput);//=strtok(NULL,",");
-      char *childName=sub(pos+1,strlen(addInput)-1,addInput);//=strtok(NULL,")");
-      printf("LOOK: %s\n",sub(7,strlen(addInput)-1,addInput));
->>>>>>> Stashed changes
 
       printf("Parent Name: %s\n",parentName);
       printf("Child: %s\n",childName);
@@ -193,7 +175,6 @@ int exists(char* name, char *family[]){
 }
 
 void printAll(char *family[]){
-  printf("NEW UPDATED FAMILY");
   int index = 0;
   for (index; index<8; index++) {
       if(family[index]==NULL){
