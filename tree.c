@@ -15,7 +15,7 @@ int main() {
 
   char name[13];
   printf("What is your name?\n");
-  scanf("%s",&name);
+  scanf("%s",name);
 
   //store name into root
   makeUser(name,family);
@@ -24,7 +24,7 @@ int main() {
   while(1){
     printf("Please specify whether to add or delete an entry, or print the tree\n");
     char input[7];
-    scanf("%s", &input);
+    scanf("%s", input);
 
     //Check to see what the string it
     //QUIT
@@ -39,7 +39,7 @@ int main() {
     }else if(strcmp(input,"add")==0){
       printf("Please specify a relation to add\n");
       char addInput[34];
-      scanf("%s", &addInput);
+      scanf("%s", addInput);
 
       char *parent=strtok(addInput,"(");
       char *parentName=strtok(NULL,",");
@@ -66,7 +66,7 @@ int main() {
     }else if(strcmp(strtok(input,"("),"delete")==0){
         printf("Please specify the name to delete\n");
         char deleteName[13];
-        scanf("%s", &deleteName);
+        scanf("%s", deleteName);
         if(exists(deleteName,family)!=0){
           deleteNode(deleteName, family);
         }else{
