@@ -33,8 +33,8 @@ int main() {
 
     //PRINT
     }else if(strcmp(input,"print")==0){
-      //printTree();
-      printAll(family);
+      printTree(family);
+      // printAll(family);
     //ADD
     }else if(strcmp(input,"add")==0){
       printf("Please specify a relation to add\n");
@@ -88,18 +88,42 @@ void makeUser(char* name, char *family[]){
   family[0]="root";
   family[1]=name;
 }
-
+//check 1
+//check 1*2
+  //check (1*2)*2 and (1*2)*2+1
+  //check (1*2+1)*2 and (1*2+1)*2+1
+//
 void printTree(char *family[]){
   int index = 1;
-  for (index; index<8; index++) {
-    if (index == 1 && family[index]!=NULL){
-      printf("%s\n",family[index]);
-      if(family[index+1]!=NULL){
-
+  char * name = family[index];
+  char * indexMom = family[index*2];
+  char * indexDad = family[index*2+1];
+  char * indexMomMom = family[(index*2)*2];
+  char * indexMomDad = family[(index*2+1)*2+1];
+  char * indexDadMom = family[(index*2+1)*2];
+  char * indexDadDad = family[(index*2+1)*2+1];
+  if (family[index]!= NULL){
+    printf("%s\n",name);
+    if(family[index*2] != NULL){
+      printf("\t%s\n",indexMom);
+      if(family[(index*2)*2] != NULL){
+        printf("\t\t%s\n",indexMomMom);
+      }
+      if(family[(index*2+1)*2+1] != NULL){
+        printf("\t\t%s\n",indexMomDad);
       }
     }
-
+    if(family[index*2+1] != NULL){
+      printf("\t%s\n",indexDad);
+      if(family[(index*2+1)*2] != NULL){
+        printf("\t\t%s\n",indexDadMom);
+      }
+      if(family[(index*2+1)*2+1] != NULL){
+        printf("\t\t%s\n",indexDadDad);
+      }
+    }
   }
+  
 }
 
 //addNode father=1 if father, 0 if mother
