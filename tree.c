@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 void makeUser(char* name, char *family[]);
-void printTree();
+void printTree(char *family[]);
 void addNode(char* child, char* parent, int father, char *family[]);
 void deleteNode(char* name, char *family[]);
 int exists(char* name, char *family[]);
@@ -34,7 +34,11 @@ int main() {
     //PRINT
     }else if(strcmp(input,"print")==0){
       printTree(family);
+<<<<<<< HEAD
       // printAll(family);
+=======
+      //printAll(family);
+>>>>>>> origin/master
     //ADD
     }else if(strcmp(input,"add")==0){
       printf("Please specify a relation to add\n");
@@ -44,9 +48,6 @@ int main() {
       char *parent=strtok(addInput,"(");
       char *parentName=strtok(NULL,",");
       char *childName=strtok(NULL,")");
-
-      printf("Parent Name: %s\n",parentName);
-      printf("Child: %s\n",childName);
 
       //FATHER
       if((strcmp(parent,"father")==0)&&(parentName!=NULL)&&(childName!=NULL)){
@@ -94,6 +95,7 @@ void makeUser(char* name, char *family[]){
   //check (1*2+1)*2 and (1*2+1)*2+1
 //
 void printTree(char *family[]){
+<<<<<<< HEAD
   int index = 1;
   char * name = family[index];
   char * indexMom = family[index*2];
@@ -124,6 +126,42 @@ void printTree(char *family[]){
     }
   }
   
+=======
+  printf("\n");
+  int i=1;
+  printf("%s\n",family[1]);
+  if(family[3]!=NULL){
+    if(family[7]!=NULL){
+      if(family[6]!=NULL){
+        printf("    %s\n      %s\n       %s\n",family[3],family[7],family[6]);
+      }else{
+        printf("    %s\n      %s\n",family[3],family[7]);
+      }
+    }else{
+      if(family[6]!=NULL){
+        printf("    %s\n      %s\n",family[3],family[6]);
+      }else{
+        printf("    %s\n",family[3]);
+      }
+    }
+  }
+  if(family[2]!=NULL){
+    if(family[5]!=NULL){
+      if(family[4]!=NULL){
+        printf("    %s\n      %s\n       %s\n",family[2],family[5],family[4]);
+      }else{
+        printf("    %s\n      %s\n",family[2],family[5]);
+      }
+    }else{
+      if(family[6]!=NULL){
+        printf("    %s\n      %s\n",family[2],family[4]);
+      }else{
+        printf("    %s\n",family[2]);
+      }
+    }
+  }
+
+>>>>>>> origin/master
 }
 
 //addNode father=1 if father, 0 if mother
