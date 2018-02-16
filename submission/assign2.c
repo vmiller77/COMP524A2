@@ -84,7 +84,7 @@ int main() {
         if(exists(deleteName,family)!=0){
           deleteNode(deleteName, family);
         }else{
-          printf("name not found");
+          printf("name not found\n");
         }
 
       //INVALID COMMAND
