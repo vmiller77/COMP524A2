@@ -12,15 +12,9 @@ void printAll(char *family[]);
 int main() {
   //make array to hold strings for family so has 7 spots
   char *family[8]={NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL}; //root,user,mom,dad,moms mom,moms dad,dads mom,dads dad
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
   char *pF= (char *) malloc(sizeof(char)*13);
   char *pM= (char *) malloc(sizeof(char)*13);
-=======
->>>>>>> Stashed changes
 
->>>>>>> origin/master
   char name[13];
   printf("What is your name?\n");
   scanf("%s",name);
@@ -37,14 +31,8 @@ int main() {
     //Check to see what the string it
     //QUIT
     if(strcmp(input,"quit")==0){
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
       free(pF);
       free(pM);
-=======
->>>>>>> origin/master
->>>>>>> Stashed changes
       exit(0);
 
     //PRINT
@@ -56,44 +44,27 @@ int main() {
       printf("Please specify a relation to add\n");
       char addInput[34];
       scanf("%s", addInput);
-<<<<<<< HEAD
+
       if (addInput[(strlen(addInput)-1)]!=41){
         printf("invalid command\n");
         continue;
       }
-=======
 
-<<<<<<< Updated upstream
-=======
->>>>>>> origin/master
->>>>>>> Stashed changes
       char *parent=strtok(addInput,"(");
       char *parentName=strtok(NULL,",");
       char *childName=strtok(NULL,")");
 
       //FATHER
       if((strcmp(parent,"father")==0)&&(parentName!=NULL)&&(childName!=NULL)){
-<<<<<<< Updated upstream
         char *pF= (char *) malloc(sizeof(char)*13);
-=======
-<<<<<<< HEAD
-=======
-        char *pF= (char *) malloc(sizeof(char)*13);
->>>>>>> origin/master
->>>>>>> Stashed changes
+
         strcpy(pF,parentName);
         addNode(childName,pF,1,family);
         
       //MOTHER
       }else if((strcmp(parent,"mother")==0)&&(parentName!=NULL)&&(childName!=NULL)){
-<<<<<<< Updated upstream
         char *pM= (char *) malloc(sizeof(char)*13);
-=======
-<<<<<<< HEAD
-=======
-        char *pM= (char *) malloc(sizeof(char)*13);
->>>>>>> origin/master
->>>>>>> Stashed changes
+
         strcpy(pM,parentName);
         addNode(childName,pM,0,family);
 
