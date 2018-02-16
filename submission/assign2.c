@@ -14,7 +14,7 @@ int main() {
   char *family[8]={NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL}; //root,user,mom,dad,moms mom,moms dad,dads mom,dads dad
 
   char name[13];
-  printf("What is your name?\n");
+  printf("Please enter your name :");
   scanf("%s",name);
 
   //store name into root
