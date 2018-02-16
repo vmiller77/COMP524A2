@@ -35,7 +35,7 @@ int main() {
           free(family[i]);
         }
       }
-      printf("Program Terminating");
+      printf("Program Terminating\n");
       exit(0);
 
     //PRINT
@@ -50,29 +50,31 @@ int main() {
 
       if (addInput[(strlen(addInput)-1)]!=41){
         printf("invalid command\n");
-        continue;
-      }
-
-      char *parent=strtok(addInput,"(");
-      char *parentName=strtok(NULL,",");
-      char *childName=strtok(NULL,")");
-
-      //FATHER
-      if((strcmp(parent,"father")==0)&&(parentName!=NULL)&&(childName!=NULL)){
-        // char *pF= (char *) malloc(sizeof(char)*13);
-        // strcpy(pF,parentName);
-        // addNode(childName,pF,1,family);
-        addNode(childName,parentName,1,family);
-      //MOTHER
-      }else if((strcmp(parent,"mother")==0)&&(parentName!=NULL)&&(childName!=NULL)){
-        // char *pM= (char *) malloc(sizeof(char)*13);
-        // strcpy(pM,parentName);
-        // addNode(childName,pM,0,family);
-        addNode(childName,parentName,0,family);
-      //NEITHER
+        // continue;
       }else{
-        printf("invalid relationship\n");
+        char *parent=strtok(addInput,"(");
+        char *parentName=strtok(NULL,",");
+        char *childName=strtok(NULL,")");
+
+        //FATHER
+        if((strcmp(parent,"father")==0)&&(parentName!=NULL)&&(childName!=NULL)){
+          // char *pF= (char *) malloc(sizeof(char)*13);
+          // strcpy(pF,parentName);
+          // addNode(childName,pF,1,family);
+          addNode(childName,parentName,1,family);
+        //MOTHER
+        }else if((strcmp(parent,"mother")==0)&&(parentName!=NULL)&&(childName!=NULL)){
+          // char *pM= (char *) malloc(sizeof(char)*13);
+          // strcpy(pM,parentName);
+          // addNode(childName,pM,0,family);
+          addNode(childName,parentName,0,family);
+        //NEITHER
+        }else{
+          printf("invalid relationship\n");
+        }
+
       }
+
 
     //DELETE
     }else if(strcmp(strtok(input,"("),"delete")==0){
